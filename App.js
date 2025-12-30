@@ -1,16 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import testImage from "./images/sample.jpeg";
 
 
-const value =250000
+const App = () => (
+  <div>
+    <h1>Test App</h1>
+    <img src={testImage} alt="Test" width="100" />
+  </div>
+);
 
-const JsxHeading =()=> (<h1>Welcome to ReactJS</h1>)
-
-const HeadingComponent = ()=> (<div>
-                                {JsxHeading()} {value}
-                                <h1>Welcome to React Functional Component</h1>
-                                </div>);
-
-const root = ReactDOM.createRoot(document.getElementById("root"))
-root.render(<HeadingComponent/>)
-
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
