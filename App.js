@@ -1,14 +1,16 @@
-{/* <div id ="parent">
-    <div id = "child">
-        <h1>This is H1 tag</h1>
-    </div>
-</div> */}
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-const divtag = React.createElement("div",{id:"parent"},
-    React.createElement("div",{id:"child"},[React.createElement("h1",{},"This is H1 tag"),
-        React.createElement("h2",{},"This is H2 tag")]));
 
-// const heading = React.createElement("h1",{id:"heading"},"Welcome to React JS")
+const value =250000
+
+const JsxHeading =()=> (<h1>Welcome to ReactJS</h1>)
+
+const HeadingComponent = ()=> (<div>
+                                {JsxHeading()} {value}
+                                <h1>Welcome to React Functional Component</h1>
+                                </div>);
+
 const root = ReactDOM.createRoot(document.getElementById("root"))
-root.render(divtag)
+root.render(<HeadingComponent/>)
 
