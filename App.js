@@ -6,7 +6,7 @@ const testImage = new URL("./images/sample.jpeg", import.meta.url);
 // Body
 // Footer
 
-const resObj = [
+const resListObj = [
       {
         "card": {
           "card": {
@@ -882,11 +882,11 @@ const resObj = [
         }
       }
     ];
-      
+
 const Header = ()=> {
   return(<div className="header">
     <div className="logo-header">
-      <img className="img-src" 
+      <img className="img-src"
       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV9QHWDr02TbzDkCbbr641ABpQCUbZiuu0PA&s"></img>
     </div>
     <div className="nav-items">
@@ -902,16 +902,16 @@ const Header = ()=> {
 }
 const ReasturentCard = ({resData}) => {
 
-  const {name, cuisines} = resData?.card?.card?.info;
+
+  const {name, cuisines,cloudinaryImageId} = resData?.card?.card?.info;
 
   return(
-   
+
     <div className="res-card">
-       
       <img className="res-img"
-      src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/ks4d93rjtcbitkzkbqx0">
+      src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660" + {cloudinaryImageId}}>
       </img>
-      {console.log({name})}
+      {console.log({cloudinaryImageId})}
       <h3>{name}</h3>
       <h4>{cuisines.join(",")}</h4>
       <h4>Rating</h4>
@@ -925,11 +925,12 @@ const Body = () => {
             <div className="search-bar">
               Search
             </div>
-            {console.log(resObj[0].card.card.info)}
+
             <div className="res-container">
-              <ReasturentCard resData={resObj[0]}/>
-              
-             
+            {
+            resListObj.map((resturant) => (
+              <ReasturentCard key ={resturant.card.card.info.id} resData={resturant}/>))
+            }
             </div>
   </div>);
 }

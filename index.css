@@ -24,12 +24,15 @@
 }
 .res-card{
     width: 200px;
-    height: 250px;
-    padding: 2px;
+    padding: 10px;
     background-color: #f0f0f0;
     font-family:'Times New Roman', Times, serif;
-    display: flex;
-    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.res-card > h4 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .res-card:hover{
@@ -41,7 +44,7 @@
      padding: 5px;
 }
 .res-img{
-    width: 195px;
+    width: 180px;
     height: 100px;
     padding: 2px;
 }
