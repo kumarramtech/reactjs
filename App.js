@@ -903,19 +903,18 @@ const Header = ()=> {
 const ReasturentCard = ({resData}) => {
 
 
-  const {name, cuisines,cloudinaryImageId} = resData?.card?.card?.info;
+  const {name, cuisines,cloudinaryImageId,avgRating,sla} = resData?.card?.card?.info;
 
   return(
 
     <div className="res-card">
       <img className="res-img"
-      src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660" + {cloudinaryImageId}}>
+      src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + cloudinaryImageId}>
       </img>
-      {console.log({cloudinaryImageId})}
       <h3>{name}</h3>
       <h4>{cuisines.join(",")}</h4>
-      <h4>Rating</h4>
-      <h4>38 Mintues</h4>
+      <h4>{avgRating} Stars</h4>
+      <h4>{sla.deliveryTime}Mintues</h4>
     </div>
   );
 }
