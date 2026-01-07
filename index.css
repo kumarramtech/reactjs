@@ -46,3 +46,11 @@
     width: 180px;
     height: 100px;
 }
+
+.res-card{
+    width: 200px;
+    padding: 10px;
+    background-color: #f0f0f0;
+   display:flex;
+   flex-wrap: wrap;
+}

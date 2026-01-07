@@ -1,116 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { resListObj } from "../utils/mockData";
 import ReasturentCard from "./ReasturentCard";
+import Shimmer from "./Shimmer";
 
-
-// let resturantList = 
-// [
-//   {
-//     "card": {
-//       "card": {
-//         "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
-//         "info": {
-//           "id": "24981",
-//           "name": "Vasista's Srilakshmi",
-//           "cloudinaryImageId": "FOOD_CATALOG/IMAGES/CMS/2024/7/29/d7b91a5c-8830-43ae-ab47-afe89ab70c46_b881b83e-8602-4e33-a2c3-87117c8ca6ca.jpeg",
-//           "locality": "Manikonda",
-//           "deliveryTime": 25,
-//           "areaName": "Shaikpet",
-//           "costForTwo": "₹350 for two",
-//           "cuisines": [
-//             "Biryani",
-//             "Chinese",
-//             "South Indian",
-//             "Andhra",
-//             "Tandoori",
-//             "Seafood",
-//             "Desserts",
-//             "Snacks"
-//           ],
-//           "avgRating": 4.2
-//         }
-//       }
-//     }
-//   },
-//   {
-//     "card": {
-//       "card": {
-//         "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
-//         "info": {
-//           "id": "249823",
-//           "name": "KFC",
-//           "cloudinaryImageId": "FOOD_CATALOG/IMAGES/CMS/2024/7/29/d7b91a5c-8830-43ae-ab47-afe89ab70c46_b881b83e-8602-4e33-a2c3-87117c8ca6ca.jpeg",
-//           "locality": "Manikonda",
-//           "areaName": "Shaikpet",
-//            "deliveryTime": 25,
-//           "costForTwo": "₹350 for two",
-//           "cuisines": [
-//             "Biryani",
-//             "Chinese",
-//             "South Indian",
-//             "Andhra",
-//             "Tandoori",
-//             "Seafood",
-//             "Desserts",
-//             "Snacks"
-//           ],
-//           "avgRating": 3.2
-//         }
-//       }
-//     }
-//   },
-//   {
-//     "card": {
-//       "card": {
-//         "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
-//         "info": {
-//           "id": "2498",
-//           "name": "Dominos",
-//           "cloudinaryImageId": "FOOD_CATALOG/IMAGES/CMS/2024/7/29/d7b91a5c-8830-43ae-ab47-afe89ab70c46_b881b83e-8602-4e33-a2c3-87117c8ca6ca.jpeg",
-//           "locality": "Manikonda",
-//           "areaName": "Shaikpet",
-//           "deliveryTime": 25,
-//           "costForTwo": "₹350 for two",
-//           "cuisines": [
-//             "Biryani",
-//             "Chinese",
-//             "South Indian",
-//             "Andhra",
-//             "Tandoori",
-//             "Seafood",
-//             "Desserts",
-//             "Snacks"
-//           ],
-//           "avgRating": 4.5
-//         }
-//       }
-//     }
-//   }
-// ];
 
 const Body = () => {
-let [resturantList,setResturantList] = useState(resListObj);
+let [resturantList,setResturantList] = useState([]);
+
+useEffect(() => {
+    fetchData();
+        }, []);
+
+const fetchData = async () => {
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4027233&lng=78.37731269999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const json = await data.json();
+    setResturantList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+
+}
+if(resturantList.length==0){
+    <Shimmer />
+}
   return ( <div className="body">
             <div className="search-bar">
               <button onClick={()=>{
                 const filterList = resturantList.filter((resData) =>{
-                    return (resData.card.card.info.avgRating > 4)
+                    return (resData.info.avgRating > 4)
                 });
                 setResturantList(filterList);
               }}>
               Top Rated</button>
             </div>
 
-            
-{/* onClick={() => console.log(resturantList.filter(
-    (resData) => resData.card.card.info.avgRating > 4
-))} */}
-
-
+        {console.log(resturantList)}
             <div className="res-container">
             {
             resturantList.map((resturant) => (
-              <ReasturentCard key ={resturant.card.card.info.id} resData={resturant}/>))
+              <ReasturentCard key ={resturant.info.id} resData={resturant}/>))
             }
             </div>
   </div>);
