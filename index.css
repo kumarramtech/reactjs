@@ -24,7 +24,7 @@
 }
 .res-card{
     width: 200px;
-    padding: 10px;
+    padding: 20px;
     background-color: #f0f0f0;
     font-family:'Times New Roman', Times, serif;
     box-sizing: border-box;
@@ -33,6 +33,7 @@
 .res-card > h4 {
   word-wrap: break-word;
   overflow-wrap: break-word;
+  margin: 20px;
 }
 
 .res-card:hover{
@@ -47,10 +48,15 @@
     height: 100px;
 }
 
-.res-card{
-    width: 200px;
-    padding: 10px;
-    background-color: #f0f0f0;
-   display:flex;
+.shimmer-container{
+    display:flex;
    flex-wrap: wrap;
+  
+}
+.shimmer-card{
+    width: 200px;
+    height:400px;
+    margin: 20px;
+    background-color: #f0f0f0;
+   
 }

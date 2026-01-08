@@ -17,9 +17,11 @@ const fetchData = async () => {
     setResturantList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
 
 }
-if(resturantList.length==0){
-    <Shimmer />
+
+if(resturantList.length === 0) {
+return <Shimmer />;
 }
+
   return ( <div className="body">
             <div className="search-bar">
               <button onClick={()=>{
@@ -31,7 +33,6 @@ if(resturantList.length==0){
               Top Rated</button>
             </div>
 
-        {console.log(resturantList)}
             <div className="res-container">
             {
             resturantList.map((resturant) => (
